@@ -1,5 +1,6 @@
 var React = require("react"),
     ClickStore = require("../stores/clickStore.js");
+    ClickActions = require('../actions/clickActions');
 
 var ClickCounter = React.createClass({
   getInitialState: function(){
@@ -9,11 +10,13 @@ var ClickCounter = React.createClass({
     this.setState({count: ClickStore.count()});
   },
   componentDidMount: function () {
-    ClickStore.addChangeHandler(this._countChanged);
+    // ClickStore.addChangeHandler(this._countChanged);
+    ClickStore.addListener(this._countChanged);
   },
   click: function(e){
-    e.preventDefault();
-    ClickStore.increment();
+    // e.preventDefault();
+    // ClickStore.increment();
+    ClickActions.incrementCounter();
   },
   render: function(){
     return (
